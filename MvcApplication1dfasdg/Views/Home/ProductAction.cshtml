@@ -1,0 +1,38 @@
+﻿@model MvcApplication1dfasdg.Models.ProductsModel
+
+<form role="form" method="POST">
+    <div class="form-group">
+        @*<label for="Name">User Name</label>
+        <input type="text" class="form-control" name="Name" placeholder="Enter name here">*@
+
+        @Html.LabelFor(x => x.Name)
+        </br>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Enter product's name here" })
+    </div>
+    <div class="form-group">
+        @*<label for="Name">User Name</label>
+        <input type="text" class="form-control" name="Name" placeholder="Enter name here">*@
+
+        @Html.LabelFor(x => x.Count)
+        </br>
+        @Html.TextBoxFor(x => x.Count, new { @class = "form-control", placeholder = "Enter count of products" })
+    </div>
+    <div class="form-group">
+        @*<label for="Name">User Name</label>
+        <input type="text" class="form-control" name="Name" placeholder="Enter name here">*@
+
+        @Html.LabelFor(x => x.Price)
+        </br>
+        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", placeholder = "Enter price of products" })
+    </div>
+
+    <div class="form-group">
+       
+
+        @Html.LabelFor(x => x.Producer)
+        </br>
+        @Html.DropDownListFor(x => x.Producer, Model.Producers, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

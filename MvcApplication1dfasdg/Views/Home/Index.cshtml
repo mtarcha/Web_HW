@@ -1,0 +1,15 @@
+﻿
+@model MvcApplication1dfasdg.Models.LocationModel
+
+<form role="form" method="POST">
+  <div class="form-group">
+        @*<label for="Location">loc</label>
+          <input type="text" class="form-control" name="Location" placeholder="Enter location">*@
+
+        @Html.LabelFor(x => x.Location)
+        </br>
+        @Html.TextBoxFor(x => x.Location, new { @class = "form-control", placeholder = "Enter the location here" })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>

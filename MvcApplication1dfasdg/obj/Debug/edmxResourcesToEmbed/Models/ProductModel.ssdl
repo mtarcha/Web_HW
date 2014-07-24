@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ProductsModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище ProductsModelContainer">
+    <EntitySet Name="Location" EntityType="Хранилище ProductsModel.Location" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Producer" EntityType="Хранилище ProductsModel.Producer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="Хранилище ProductsModel.Products" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Producer_Producer" Association="Хранилище ProductsModel.FK_Producer_Producer">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Producer" EntitySet="Producer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Producer" Association="Хранилище ProductsModel.FK_Products_Producer">
+      <End Role="Producer" EntitySet="Producer" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="ProducerID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Producer_Producer">
+    <End Role="Location" Type="Хранилище ProductsModel.Location" Multiplicity="1" />
+    <End Role="Producer" Type="Хранилище ProductsModel.Producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Producer">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Producer">
+    <End Role="Producer" Type="Хранилище ProductsModel.Producer" Multiplicity="1" />
+    <End Role="Products" Type="Хранилище ProductsModel.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProducerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
